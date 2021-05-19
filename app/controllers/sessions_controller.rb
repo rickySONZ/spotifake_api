@@ -1,16 +1,24 @@
 class SessionsController < ApplicationController
 
     def create 
-        user = User.find_by(email: params["user"]["email"])
-        user.try(:authenticate, params["user"]["password"])
-        if user
+        user = User.find_by_email(params[:email])
+       
+        if user && user.authenticate(params[:password])
             sessions[:user_id] = user.id
             render json:{
-                status: :created,
-                user: user
+                status: 200,
+                user: user.json()
             }
+        elsif user
+            render json: {
+                 status: 500,
+                error: "Wrong Password"
+            } 
         else
-            render json: { status: 401}
+             render json: {
+                 status: 500,
+                 error: "Email Not Found"
+             }
         end
     end
 
