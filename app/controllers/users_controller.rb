@@ -22,7 +22,8 @@ class UsersController < ApplicationController
       render json: {
       status: 200, 
       email: user.email,
-      password: user.password
+      password: user.password,
+      logged_in: true
 
     }
     else

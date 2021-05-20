@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
 
             session[:user_id] = user.id
             render json: {
+                status: 200,
                 email: user.email,
                 password: user.password
 
@@ -16,11 +17,14 @@ class SessionsController < ApplicationController
                  status: 500,
                 error: "Wrong Password"
             } 
+            return json[error]
+           
         else
              render json: {
                  status: 500,
                  error: "Email Not Found"
              }
+             
         end
     end
 
