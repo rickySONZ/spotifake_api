@@ -2,14 +2,16 @@ class SessionsController < ApplicationController
 
     def create 
         user = User.find_by_email(params[:email])
-       
         if user && user.authenticate(params[:password])
-            sessions[:user_id] = user.id
-            render json:{
-                status: 200,
-                user: user.json()
+
+            session[:user_id] = user.id
+            render json: {
+                email: user.email,
+                password: user.password
+
             }
         elsif user
+
             render json: {
                  status: 500,
                 error: "Wrong Password"
@@ -20,6 +22,10 @@ class SessionsController < ApplicationController
                  error: "Email Not Found"
              }
         end
+    end
+
+    def index
+        
     end
 
     def logged_in
