@@ -20,11 +20,11 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       render json: {
+      id: user.id,
       status: 200, 
       email: user.email,
       password: user.password,
       logged_in: true
-
     }
     else
       render json: user.errors, status: :unprocessable_entity
