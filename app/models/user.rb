@@ -4,7 +4,6 @@ class User < ApplicationRecord
     validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
     has_one :library
-
     has_many :liked_songs, through: :library
 
 
