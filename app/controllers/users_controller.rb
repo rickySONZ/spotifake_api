@@ -24,8 +24,10 @@ class UsersController < ApplicationController
       status: 200, 
       email: user.email,
       password: user.password,
-      logged_in: true
+      logged_in: true,
+      library_user_id: user.id
     }
+    library = Library.create(user_id: user.id)
     else
       render json: user.errors, status: :unprocessable_entity
     end
