@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     user = User.create(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
 
     if user.save
+      library = Library.create(user_id: user.id)
       session[:user_id] = user.id
       render json: {
       id: user.id,
@@ -25,9 +26,9 @@ class UsersController < ApplicationController
       email: user.email,
       password: user.password,
       logged_in: true,
-      library_user_id: user.id
+      library_id: library.id
     }
-    library = Library.create(user_id: user.id)
+    
     else
       render json: user.errors, status: :unprocessable_entity
     end
