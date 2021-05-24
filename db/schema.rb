@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_182938) do
   end
 
   create_table "liked_songs", force: :cascade do |t|
+    t.integer "library_id"
+    t.integer "song_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
