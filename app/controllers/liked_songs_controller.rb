@@ -3,9 +3,9 @@ class LikedSongsController < ApplicationController
 
   # GET /liked_songs
   def index
-    @liked_songs = LikedSong.all
+    @liked_songs = LikedSong.where(library_id: params[:library_id])
 
-    render json: @liked_songs
+    render json: @liked_songs.to_json(include: [:song])
   end
 
   # GET /liked_songs/1
