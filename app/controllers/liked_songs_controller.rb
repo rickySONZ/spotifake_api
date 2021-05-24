@@ -35,7 +35,11 @@ class LikedSongsController < ApplicationController
 
   # DELETE /liked_songs/1
   def destroy
-    @liked_song.destroy
+    if @liked_song.destroy
+      render json: {message: "The song has been removed from your library.", liked_song: @liked_song}
+    else
+      render json: {message: "Could not delete song."}
+    end
   end
 
   private
