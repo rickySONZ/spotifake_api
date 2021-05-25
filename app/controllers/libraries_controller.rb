@@ -18,7 +18,7 @@ class LibrariesController < ApplicationController
     @library = Library.new(library_params)
 
     if @library.save
-      render json: @library, status: :created, location: @library
+      render json: @library.liked_songs, status: :created, location: @library
     else
       render json: @library.errors, status: :unprocessable_entity
     end
