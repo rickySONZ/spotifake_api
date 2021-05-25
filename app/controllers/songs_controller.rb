@@ -43,8 +43,10 @@ class SongsController < ApplicationController
     tracks = RSpotify::Track.search(params["search_song_title"])
     
     tracks.each do |t| 
-      Song.find_or_create_by(t.href)
-    end
+       Song.create(:name => t.name, :artist => t.artists.first.name, :album => t.album.name, :url => t.external_urls["spotify"], :uid => t.id)
+     end
+     binding.pry
+
   end
 
   private
@@ -55,6 +57,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.require(:song).permit(:name, :artist, :album, :url)
+      params.require(:song).permit(:name, :artist, :album, :url, :uid)
     end
 end
