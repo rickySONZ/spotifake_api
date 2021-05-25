@@ -1,9 +1,15 @@
 class SessionsController < ApplicationController
 
     def create 
-        user = User.find_by_email(params[:email])
-        library = Library.find_or_create_by(user_id: user.id)
+        if user = User.find_by(email: params[:email])
+            user = User.find_by_email(params[:email])
+        elsif params[:session_id] != "undefined" && User.find(params[:session_id].to_i)
+            user = User.find(params[:session_id].to_i)
+        end
+        
         if user && user.authenticate(params[:password])
+            # binding.pry
+            library = Library.find_or_create_by(user_id: user.id)
             session[:user_id] = user.id
             render json: {
                 id: user.id,
@@ -13,11 +19,13 @@ class SessionsController < ApplicationController
                 library: library.id
             }
         elsif user
+            # binding.pry
             render json: {
                  status: 500,
                 error: "Wrong Password"
             } 
         else
+            # binding.pry
              render json: {
                  status: 500,
                  error: "Email Not Found"

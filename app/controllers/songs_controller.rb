@@ -43,10 +43,13 @@ class SongsController < ApplicationController
     tracks = RSpotify::Track.search(params["search_song_title"])
     
     tracks.each do |t| 
-       Song.create(:name => t.name, :artist => t.artists.first.name, :album => t.album.name, :url => t.external_urls["spotify"], :uid => t.id)
+       song = Song.create(:name => t.name, :artist => t.artists.first.name, :album => t.album.name, :url => t.external_urls["spotify"], :uid => t.id)
      end
-     @songs = Song.limit(8).pull_search_results(params["search_song_title"])
-     binding.pry
+     @songs = Song.pull_search_results(params["search_song_title"]).limit(7)
+
+     render json: @songs
+     
+    
 
   end
 
