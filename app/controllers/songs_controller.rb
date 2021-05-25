@@ -38,6 +38,15 @@ class SongsController < ApplicationController
     @song.destroy
   end
 
+  def search
+    
+    tracks = RSpotify::Track.search(params["search_song_title"])
+    
+    tracks.each do |t| 
+      Song.find_or_create_by(t.href)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_song

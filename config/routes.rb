@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  post '/songs/search', to: 'songs#search'
+
   resources :libraries
   resources :songs
   resources :users, only: [:create, :index] do
