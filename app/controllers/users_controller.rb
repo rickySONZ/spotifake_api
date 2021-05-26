@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       render json: {
       id: user.id,
       status: 200, 
+      id: user.id,
       email: user.email,
       password: user.password,
       logged_in: true,

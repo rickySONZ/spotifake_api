@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
         end
         
         if user && user.authenticate(params[:password])
-            # binding.pry
+
+            
             library = Library.find_or_create_by(user_id: user.id)
             session[:user_id] = user.id
             render json: {
