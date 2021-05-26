@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :libraries
   resources :songs
-  resources :users, only: [:create, :index] do
+  resources :users do
     resources :libraries do
       resources :liked_songs
     end

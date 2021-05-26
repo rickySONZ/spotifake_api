@@ -26,8 +26,8 @@ class LibrariesController < ApplicationController
 
   # PATCH/PUT /libraries/1
   def update
-    if @library.update(library_params)
-      render json: @library.to_json(include: [:songs])
+    if @library.update(song_ids: params[:song_ids])
+      render json: @library.liked_songs.to_json(include: [:song])
     else
       render json: @library.errors, status: :unprocessable_entity
     end
