@@ -10,7 +10,7 @@ class LibrariesController < ApplicationController
 
   # GET /libraries/1
   def show
-    render json: @library
+    render json: @library.to_json(include: [:songs])
   end
 
   # POST /libraries
@@ -18,7 +18,7 @@ class LibrariesController < ApplicationController
     @library = Library.new(library_params)
 
     if @library.save
-      render json: @library.liked_songs, status: :created, location: @library
+      render json: @library, status: :created, location: @library
     else
       render json: @library.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class LibrariesController < ApplicationController
   # PATCH/PUT /libraries/1
   def update
     if @library.update(library_params)
-      render json: @library
+      render json: @library.to_json(include: [:songs])
     else
       render json: @library.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class LibrariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def library_params
-      params.require(:library).permit(:belongs_to)
+      params.require(:library).permit(:belongs_to, song_ids: [])
     end
 end
