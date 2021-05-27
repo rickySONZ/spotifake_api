@@ -16,14 +16,13 @@ class UsersController < ApplicationController
   # POST /users
   def create
     user = User.create(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-
+    profile = Profile.find_by(user_id: params[:id])
     if user.save
       library = Library.create(user_id: user.id)
       session[:user_id] = user.id
       render json: {
       id: user.id,
       status: 200, 
-      id: user.id,
       email: user.email,
       password: user.password,
       logged_in: true,
