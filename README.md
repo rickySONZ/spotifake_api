@@ -17,3 +17,6 @@ https://www.loom.com/share/4d396ef737a14dbd8f8c9ad99e47336c
 Pull requests and bug reports are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+# License
+MIT
