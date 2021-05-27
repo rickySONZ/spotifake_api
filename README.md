@@ -1,24 +1,19 @@
-# README
+# SpotiFake API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version 2.6.1
 
-Things you may want to cover:
+* Front End is in this Repository https://github.com/rickySONZ/spotifake_frontend
 
-* Ruby version
+# Usage
+To launch Front End go to link above and run index.html in console
 
-* System dependencies
+To launch back end run rails s in console. Hosted on localhost:3000
 
-* Configuration
+Follow video below for further instructions on site navigation.
 
-* Database creation
+https://www.loom.com/share/4d396ef737a14dbd8f8c9ad99e47336c
 
-* Database initialization
+# Contributing 
+Pull requests and bug reports are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please make sure to update tests as appropriate.
