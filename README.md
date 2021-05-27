@@ -5,7 +5,7 @@
 * Front End is in this Repository https://github.com/rickySONZ/spotifake_frontend
 
 # Usage
-To launch Front End go to link above and run index.html in console
+To launch Front End go to link above and run open index.html in console
 
 To launch back end run rails s in console. Hosted on localhost:3000
 
