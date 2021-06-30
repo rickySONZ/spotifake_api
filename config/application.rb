@@ -19,7 +19,7 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-RSpotify::authenticate("58234d1b76f74d45ae05b845407ce367", "63f626ab0337488d9d28b9822c60fc99")
+RSpotify::authenticate(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"])
 module SpotifakeApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
